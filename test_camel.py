@@ -1,4 +1,3 @@
-import pytest
 import camel
 
 def test_camel_to_words_with_should():
