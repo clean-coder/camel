@@ -2,15 +2,6 @@
 import pyperclip 
 import sys 
 
-def camel_to_words(s: str) -> str:
-    res = ""
-    for c in s:
-        if c.isupper():
-            res += " " + c.lower()
-        else:
-            res += c
-    return res
-
 def camel_to_words_with_should(s: str) -> str:
     function, description = s.split("Should")
     res = ""
@@ -21,14 +12,19 @@ def camel_to_words_with_should(s: str) -> str:
             res += c
     return function + "() should" + res 
 
+def generate_display_name_and_copy_to_clipboard(s: str) -> None:
+    pyperclip.copy(f'@DisplayName("{s}")')
 
-if len(sys.argv) != 2:
+def print_usage():
     print("usage: camel.py <string>")
-    print('<string> should be camelCase in the following format: methodeNameShouldDoSomethingIfConditionsAreMet')
-    print('example: python camel.py isUserMemberOfTeamsShouldReturnTrueIfUserIsMemberOfTeams)')
-    sys.exit(1)
+    print('<string> should be camelCase in the following format: methodeShouldDoSomethingIfConditionsAreMet')
+    print('example: python camel.py baluShouldBeSuper)')
 
-converted = camel_to_words_with_should(sys.argv[1])
-#converted = camel_to_words(sys.argv[1])
-print(converted)
-pyperclip.copy(f'@DisplayName("{converted}")')
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print_usage()
+        sys.exit(1)
+
+    converted = camel_to_words_with_should(sys.argv[1])
+    print(converted)
+    generate_display_name_and_copy_to_clipboard(converted)
