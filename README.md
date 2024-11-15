@@ -12,3 +12,9 @@
 * with standard python and pip
   * `pip install pyperclip`
   * `python3 camel.py "baluShouldBeSuper"`
+
+## run (local) tests
+* with uv
+  * `uv run pytest`
+* with standard python and pip
+  * `pytest`
