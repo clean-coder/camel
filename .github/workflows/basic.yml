@@ -5,7 +5,8 @@ jobs:
     name: python
     runs-on: ubuntu-latest
     steps:
-      - uses: ConorMacBride/install-package@v1
+      - name: Install xclip
+        uses: ConorMacBride/install-package@v1
         with:
           apt: xclip
       - uses: actions/checkout@v4
@@ -13,3 +14,7 @@ jobs:
         uses: astral-sh/setup-uv@v2
         with:
           version: "0.5.1"
+      - name: Install the project
+        run: uv sync --all-extras --dev
+      - name: Run tests
+        run: uv run pytest          
