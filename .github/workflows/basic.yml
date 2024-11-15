@@ -1,4 +1,4 @@
-name: Example
+name: Basic
 on: [push, pull_request]
 jobs:
   uv-example:
